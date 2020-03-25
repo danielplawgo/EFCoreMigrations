@@ -1,0 +1,36 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+- task: UseDotNet@2
+  displayName: ".NET Core 3.1.x"
+  inputs:
+    packageType: 'sdk'
+    version: '3.1.x'
+
+- task: DotNetCoreCLI@2
+  displayName: "Migrations Publish"
+  inputs:
+    command: 'publish'
+    publishWebProjects: false
+    projects: 'EFCoreMigrations.Migrator/EFCoreMigrations.Migrator.csproj'
+    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/Migrations  --self-contained -r win10-x64'
+    zipAfterPublish: false
+
+- task: DotNetCoreCLI@2
+  displayName: "Web Publish"
+  inputs:
+    command: 'publish'
+    publishWebProjects: false
+    projects: 'EFCoreMigrations.Web/EFCoreMigrations.Web.csproj'
+    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/Web'
+
+- task: PublishBuildArtifacts@1
+  displayName: "Upload Artifacts"
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
