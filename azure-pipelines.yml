@@ -20,7 +20,7 @@ steps:
     command: 'publish'
     publishWebProjects: false
     projects: 'EFCoreMigrations.Migrator/EFCoreMigrations.Migrator.csproj'
-    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/Migrations  --self-contained -r win10-x64'
+    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/Migrations  --self-contained true -r win10-x64'
     zipAfterPublish: false
 
 - task: DotNetCoreCLI@2
