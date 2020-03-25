@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EFCoreMigrations.Web\EFCoreMigrations.Web.csproj" />
+    <ProjectReference Include="..\EFCoreMigrations.Web\EFCoreMigrations.Web.csproj" GlobalPropertiesToRemove="SelfContained" />
   </ItemGroup>
 
 </Project>
