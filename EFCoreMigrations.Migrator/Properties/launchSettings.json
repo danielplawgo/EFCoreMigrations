@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "EFCoreMigrations.Migrator": {
+      "commandName": "Project",
+      "commandLineArgs": "-c \"Server=.\\sqlexpress;Database=EFCoreMigrations;Trusted_Connection=True;\""
+    }
+  }
+}
